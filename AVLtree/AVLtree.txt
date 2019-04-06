@@ -1,0 +1,104 @@
+import java.util.*;
+class AVLtree
+{
+	Node root;
+	Integer height;
+	AVLtree()
+	{
+		root=null;
+	}
+	public void addNode(Integer v)
+	{
+	    addNode(root,v);
+	}
+    public Node addNode(Node t,Integer item)
+    {
+    if(t == null)
+    t = new Node(item);
+        else if(item<t.val)
+        {
+            t.left = addNode(t.left, item); 
+            if(Height(t.left) - Height(t.right) == 2 ) 
+            {
+                if(item<t.left.val)
+                    t = singleRotateRight(t);
+                else
+                    t = doubleRotateLeftRight(t);
+            }
+        }   
+        else if(item>= t.val) 
+        {
+            t.right = addNode(t.right, item);
+            if(Height(t.left)-Height(t.right) == -2)
+            {
+                if(item<=t.right.val)
+                    t = singleRotateLeft(t);
+                else
+                    t = doubleRotateRightLeft(t);
+            }
+        }
+            t.height = max(Height(t.left),Height(t.right))+1;
+            return t;
+    }
+    public Integer Height(Node node)  
+    { 
+        if (node == null) 
+            return 0; 
+        else 
+        { 
+            int lDepth = Height(node.left); 
+            int rDepth = Height(node.right); 
+            if (lDepth > rDepth) 
+                return (lDepth); 
+             else 
+                return (rDepth); 
+        } 
+    }
+	public int max(Integer a,Integer b)
+	{
+	    return(a>b)?a:b;
+	}
+	public Node doubleRotateRightLeft(Node p)
+    {
+        p.right = singleRotateRight(p.right);
+        return singleRotateLeft(p);
+    }
+    public Node doubleRotateLeftRight(Node p)
+    {
+        p.left = singleRotateLeft(p.left);
+        return singleRotateRight(p);
+    }
+	public Node singleRotateRight(Node p)
+	{
+	    Node lc=p.left;
+	    p.left=lc.right;
+	    lc.right=p;
+	    p.height=max(Height(p.left),Height(p.right))+1;
+	    lc.height=max(Height(lc.left),Height(lc.right))+1;
+	     return lc;
+	}
+	public Node singleRotateLeft(Node p)
+	{
+	    Node rc=p.right;
+	    p.right=rc.left;
+	    rc.left=p;
+	    p.height=max(Height(p.left),Height(p.right))+1;
+	    rc.height=max(Height(rc.left),Height(rc.right))+1;
+	    return rc;
+	}
+	public void Traverse(Node r)
+	{
+		if(r==null)
+		return;
+		else
+		{
+		Traverse(r.left);
+		System.out.print(r.val);
+		Traverse(r.right);
+		}
+	}
+	public void Traverse()
+	{
+	    Traverse(root);
+	}
+}

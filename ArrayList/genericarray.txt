@@ -1,0 +1,114 @@
+import java.util.*;
+public class Main
+{
+    public static void main(String []args){
+    
+    ArrayList<Integer> ob=new ArrayList<Integer>();
+    for(Integer i=0;i<ob.buffer;i++)
+    {
+    ob.add(i);
+    }
+         System.out.println("Enter Your Choice:");
+         System.out.println("1. Add Element At Position:");
+         System.out.println("2. For Printing Elemnts:");
+         System.out.println("3. For Search when Given Element:");
+         System.out.println("4. Enter Search when Given Position:");
+        
+        Scanner sc=new Scanner(System.in);
+        Integer a=sc.nextInt();
+        switch(a)
+        {
+            case 1: ob.add(20);
+                    ob.Traverse();
+                    break;
+            case 2: ob.Traverse();
+                    break;
+            case 3: System.out.println(ob.Search(3));
+                    ob.Traverse();
+                    break;
+            case 4: ob.getElementAt(3);
+                    ob.Traverse();
+                    break;
+            case 5: if(ob.isempty())
+                    System.out.println("Arraylist is empty");
+            }
+    }
+}
+class BoundException extends Exception
+{
+void printError(int i)
+{
+	printStackTrace();
+	System.err.println("Error Occurrence");
+}
+}
+class ArrayList<D> 
+{
+	Object array[];
+	Integer size;
+	Integer buffer;
+	ArrayList()
+	{
+		    buffer=5;
+		    size=0;
+         array=new Object[buffer];
+	}
+	boolean isempty()
+	{
+	    return (size==0);
+	}
+	public void add(D i)
+	{
+		if(size==buffer)
+		{
+		         
+	        Object arr[]=new Object[buffer*2];
+			buffer*=2;
+			for(Integer j=0;j<size;j++)
+			{
+				arr[j]=array[j];
+			}
+			array=arr;
+			array[size]=i;
+			size++;
+		}
+		else
+		{
+			array[size]=i;
+			size++;
+		}
+	}
+	
+	public void Traverse()
+	{
+		Integer a=0;
+		while(a<size)
+		{
+			System.out.println(array[a]);
+			a+=1;
+		}
+	}
+	Integer Search(D o)
+    {
+        Integer i;
+        for(i=0;i<size;i++)
+        {
+         if(array[i]==o)
+         break;
+        }
+        return i;
+    }
+    D getElementAt(Integer pos)
+    {
+        try{
+            if(pos<0||pos>=size)
+            throw new BoundException();
+        }
+        catch(BoundException e)
+        {e.printError(pos);
+        return null;
+        }
+        return (D)array[pos];
+    }
+
+}

@@ -1,0 +1,61 @@
+class QueueLL<D> implements Queue<D>
+{
+	ListObject<D> head=null;
+	ListObject<D> tail=null;
+	Integer size=0;
+	public void enqueue(D o)
+	{
+		ListObject <D> ob=new ListObject<D>(o);
+		if(head==null)
+		{
+			head=ob;
+			tail=ob;
+			size++;
+		}
+		else
+		{
+			tail.next=ob;
+			tail=ob;
+			size++;
+		}
+	}
+	public D dequeue()
+	{
+	     try{
+            if(size==0)
+            throw new BoundException();
+        }
+        catch(BoundException e)
+            {
+              e.printerror();
+              return null;
+             }
+		ListObject <D> ob=head;
+		
+		D t=ob.val;
+		ob=head.next;
+		head=ob;
+		size--;
+		return t;
+	}
+	public D peek()
+	{
+	     try{
+            if(size==0)
+            throw new BoundException();
+        }
+        catch(BoundException e)
+            {
+              e.printerror();
+              return null;
+             }
+	    ListObject <D> ob=head;
+		D t=ob.val;
+		return t;
+	}
+	
+	public Integer Size()
+	{
+	    return size;
+	}
+}

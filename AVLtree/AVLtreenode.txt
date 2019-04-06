@@ -1,0 +1,14 @@
+class Node
+{
+	Integer val;
+	Node left;
+	Node right;
+	Integer height;
+	Node(Integer val)
+	{
+	     this.val=val;
+	     this.height=0;
+	     this.left=null;
+	     this.right=null;
+	}
+}

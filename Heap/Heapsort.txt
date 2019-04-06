@@ -1,0 +1,219 @@
+import java.util.*;
+public class Main
+ { 
+     Integer[] Heap; 
+    Integer size; 
+    Integer maxsize; 
+
+    public Main(Integer maxsize) 
+    { 
+        this.maxsize = maxsize; 
+        this.size = 0; 
+        Heap = new Integer[this.maxsize + 1]; 
+        Heap[0] = Integer.MAX_VALUE; 
+    } 
+  
+
+  Integer parent(Integer pos) 
+    { 
+        return pos / 2; 
+    } 
+   
+     Integer leftChild(Integer pos) 
+    { 
+        return (2 * pos); 
+    } 
+     Integer rightChild(Integer pos) 
+    { 
+        return (2 * pos) + 1; 
+    } 
+
+    boolean isLeaf(Integer pos) 
+    { 
+        if (pos >= (size / 2) && pos <= size) { 
+            return true; 
+        } 
+        return false; 
+    } 
+    void swap(Integer fpos, Integer spos) 
+    { 
+        Integer tmp; 
+        tmp = Heap[fpos]; 
+        Heap[fpos] = Heap[spos]; 
+        Heap[spos] = tmp; 
+    } 
+ 	/*void maxHeapify(Integer pos) 
+    { 
+        if (isLeaf(pos)) 
+            return; 
+  
+        if (Heap[pos] < Heap[leftChild(pos)] ||  Heap[pos] < Heap[rightChild(pos)])
+        { 
+ 			if (Heap[leftChild(pos)] > Heap[rightChild(pos)]) 
+            { 
+                swap(pos, leftChild(pos)); 
+                maxHeapify(leftChild(pos)); 
+            } 
+            else 
+            { 
+                swap(pos, rightChild(pos)); 
+                maxHeapify(rightChild(pos)); 
+            } 
+        } 
+    } */
+  	/*public void insert(Integer element) 
+    { 
+        if(size+1>=maxsize)
+        {
+        	System.out.println("The Heap is Full");
+        }
+        else
+        {
+        Heap[++size] = element; 
+  		Integer current = size; 
+        	while (Heap[current] > Heap[parent(current)])
+        	{ 
+            swap(current, parent(current)); 
+            current = parent(current); 
+        	}
+        } 
+    }*/
+    public void insert(Integer element) 
+    { 
+        if(size+1>=maxsize)
+        {
+        	System.out.println("The Heap is Full");
+        }
+        else
+        {
+            ++size;
+            Integer i=size;
+            while((i!=1) && (element>Heap[i/2]))
+            {
+                Heap[i]=Heap[i/2];
+                i/=2;
+            }
+            Heap[i]=element;
+        }
+    }        
+    public int Deletion()
+    {
+        int p,c,item,temp;
+        if(size==0)
+        {
+            System.out.println("The Heap is Empty");
+            return 0;
+        }
+        item=Heap[1];
+        Heap[1]=Heap[size];
+        --size;
+        temp=Heap[1];
+        p=1;
+        c=2;
+        while(c<=size)
+        {
+            if((c+1<=size)&&(Heap[c]<Heap[c+1]))
+            c++;
+            if(Heap[p]>=Heap[c])
+            break;
+            
+            Heap[p]=Heap[c];
+            p=c;
+            c*=2;
+        }
+        Heap[p]=temp;
+        return item;
+    }
+    public void print() 
+    { 
+        for (Integer i = 1; i <= size / 2; i++) 
+        { 
+            System.out.print(" parent: " + Heap[i] + " left child : " + 
+                      Heap[2 * i] + " right child :" + Heap[2 * i + 1]); 
+            System.out.println(); 
+        } 
+    } 
+  	/*public Integer extractMax() 
+    { 
+        Integer popped = Heap[1]; 
+        Heap[1] = Heap[size--]; 
+        maxHeapify(1); 
+        return popped; 
+    } */
+    public void HeapSort()
+    {
+        HeapSort(Heap,size);
+    }
+    public void HeapSort(Integer Heap[],Integer size)
+    {
+        BuildMaxHeap(Heap,size);
+        
+        for(int i=size;i>=1;i--)
+        {
+            //swap(1,i);
+            int temp = Heap[1]; 
+            Heap[1] = Heap[i]; 
+            Heap[i] = temp; 
+  
+            size=size-1;
+            Heapify(Heap,1);
+        }
+    }
+    public void BuildMaxHeap(Integer Heap[],Integer size)
+    {
+        for(int i=(size/2);i>=1;i--)
+        {
+            Heapify(Heap,i);
+        }
+    }
+    public void Heapify(Integer Heap[],Integer t)
+    {
+        Integer  lchild=2*t;
+        Integer largest=t;
+        Integer rchild=(2*t)+1;
+        if(lchild<size && Heap[lchild]>Heap[largest])
+        largest=lchild;
+        
+        if(rchild<size && Heap[rchild]>Heap[largest])
+        largest=rchild;
+        
+        if(largest!=t)
+        {
+            /*int swap = Heap[t]; 
+            Heap[t] = Heap[largest]; 
+            Heap[largest] = swap;*/
+            swap(t,largest);
+        
+            Heapify(Heap,largest);
+        }
+        
+    }
+    public void printsort()
+    {
+        for(Integer i=1;i<=size;i++)
+        {
+            System.out.print(Heap[i]+" ");
+        }
+    }
+  	public static void main(String[] args) 
+    { 
+        
+        Main maxHeap = new Main(15); 
+        maxHeap.insert(6); 
+        maxHeap.insert(8); 
+        maxHeap.insert(17); 
+        maxHeap.insert(38);  
+        maxHeap.insert(200); 
+        System.out.println(maxHeap.Deletion());
+        maxHeap.print();
+        System.out.println("After adding element "); 
+   
+          maxHeap.insert(10);
+          
+        maxHeap.print();
+        maxHeap.HeapSort();
+        maxHeap.printsort();
+        
+       // System.out.println("The max val is " + maxHeap.extractMax()); 
+    } 
+} 

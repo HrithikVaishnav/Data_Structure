@@ -1,0 +1,44 @@
+import java.util.*;
+public class Driver
+{
+    public static void main(String[] args)
+    {
+        StackLL<Integer> ob=new StackLL<Integer>();
+        /*for(Integer i=0;i<5;i++)
+        {
+            ob.push(i);
+        }*/
+        Integer a;
+       do
+       {
+        
+         System.out.println("Enter Your Choice:");
+         System.out.println("1. Push:");
+         System.out.println("2. Pop:");
+         System.out.println("3. Peek:");
+         System.out.println("4. Size:");
+         System.out.println("5. Exit");
+         Scanner sc=new Scanner(System.in);
+         a=sc.nextInt();
+       
+       
+        switch(a)
+        {
+            case 1: Integer i=sc.nextInt();
+            	    ob.push(i);
+            	    //ob.Traverse();
+                    break;
+            case 2: System.out.println(ob.pop());
+                   // ob.Traverse();
+                    break;
+            case 3: System.out.println(ob.peek());
+                   // ob.Traverse();
+                    break;
+            case 4: System.out.println(ob.Size());
+                    //ob.Traverse();
+                    break;
+     	 }   
+        }while(a!=5);
+     	  
+     }
+}     

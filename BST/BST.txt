@@ -1,0 +1,148 @@
+import java.util.*;
+class BST<D>
+{
+	Node<D> root;
+	BST()
+	{
+		root=null;
+	}
+	public void Insert(D val)
+	{
+		Node<D> ob=new Node<D>(val);
+		if(root==null)
+		{root=ob;}
+		else
+		{
+		    Node<D> hop=root;
+			while(true)
+			{
+				if((Integer)val>(Integer)hop.val)
+				{
+					if(hop.right==null)
+					break;
+					else
+					hop=hop.right;
+				}
+				else
+				{
+					if(hop.left==null)
+					break;
+					else
+					hop=hop.left;	
+				}
+			}
+			if((Integer)val>(Integer)hop.val)
+			hop.right=ob;
+			else
+			hop.left=ob;
+		}
+	}
+	public Node minimumKey(Node curr)
+	{
+		while(curr.left != null) {
+			curr = curr.left;
+		}
+		return curr;
+	}
+	public Node deleteNode(D key)
+	{
+		Node<D> parent = null;
+		Node<D> curr = root;
+		while(curr != null && (Integer)curr.val !=(Integer) key)
+		{
+			parent = curr;
+			if ((Integer)key <(Integer) curr.val) {
+				curr = curr.left;
+			}
+			else {
+				curr = curr.right;
+			}
+		}
+		if (curr == null) {
+			return root;
+		}
+		if (curr.left == null && curr.right == null)
+		{
+			if (curr != root) {
+				if (parent.left == curr) {
+					parent.left = null;
+				} else {
+					parent.right = null;
+				}
+			}
+			else {
+				root = null;
+			}
+		}
+		else if (curr.left != null && curr.right != null)
+		{
+			Node<D> successor = minimumKey(curr.right);
+			D val= successor.val;
+			deleteNode(successor.val);
+			curr.val = val;
+		}
+		else
+		{
+			Node<D> child = (curr.left != null)? curr.left: curr.right;
+			if (curr != root)
+			{
+				if (curr == parent.left) {
+					parent.left = child;
+				} else {
+					parent.right = child;
+				}
+			}
+			else {
+				root = child;
+			}
+		}
+
+		return root;
+	}
+
+	public void Traverse(Node r)
+	{
+		if(r==null)
+		return;
+		else
+		{
+		Traverse(r.left);
+		System.out.print(r.val);
+		Traverse(r.right);
+		}
+	}
+	public void Prefix(Node r)
+	{
+		if(r==null)
+		return;
+		else
+		{
+		System.out.print(r.val);
+		Traverse(r.left);
+		Traverse(r.right);
+		}
+	}
+	public void Postfix(Node r)
+	{
+		if(r==null)
+		return;
+		else
+		{
+		Traverse(r.left);
+		Traverse(r.right);
+		System.out.print(r.val);
+		}
+	}
+	public void Traverse()
+	{
+	    Traverse(root);
+	}
+   public void Prefix()
+   {
+       Prefix(root);
+   }
+   public void Postfix()
+   {
+        Postfix(root);
+   }
+}

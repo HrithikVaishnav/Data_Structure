@@ -1,0 +1,12 @@
+class Node<D>
+{
+	D val;
+	Node<D> left;
+	Node<D> right;
+	Node(D val)
+	{
+	     this.val=val;
+	     this.left=null;
+	     this.right=null;
+	}
+}

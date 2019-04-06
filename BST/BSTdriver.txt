@@ -1,0 +1,40 @@
+import java.util.*;
+public class BSTdriver
+{
+    public static void main(String[] args)
+    {
+    BST<Integer> obj=new BST<Integer>();
+	Scanner sc=new Scanner(System.in);
+	Integer a;
+       do
+       {
+        
+         System.out.println("Enter Your Choice:");
+         System.out.println("1. Insertion:");
+         System.out.println("2. Deletion:");
+         System.out.println("3. Traverse:");
+         System.out.println("4. Postfix Traverse:");
+         System.out.println("5. Prefix Traverse:");
+         System.out.println("6.Exit:");
+         Scanner sc=new Scanner(System.in);
+         a=sc.nextInt();
+       
+       
+        switch(a)
+        {
+            case 1: Integer i=sc.nextInt();
+            	    obj.Insert(i);
+                    break;
+            case 2: Integer i=sc.nextInt();
+                    obj.deleteNode(i);
+                    break;
+            case 3: obj.Traverse();
+                    break;
+            case 4: obj.prefix();
+                    break;
+            case 5: obj.postfix();
+                    break;
+     	 }   
+        }while(a!=6);
+    }	
+}

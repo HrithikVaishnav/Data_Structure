@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args)
+    {
+    AVLtree obj=new AVLtree();
+	Scanner sc=new Scanner(System.in);
+	Integer a;
+       do
+       {
+         System.out.println("Enter Your Choice:");
+         System.out.println("1. Insertion:");
+         System.out.println("2. Traverse:");
+         System.out.println("3.Exit:");
+         a=sc.nextInt();
+        switch(a)
+        {
+            case 1: Integer i=sc.nextInt();
+            	    obj.addNode(i);
+                    break;
+            case 2: obj.Traverse(obj.root);
+                    break;        
+     	}   
+       }while(a!=3);
+    }	
+}

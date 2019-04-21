@@ -49,9 +49,9 @@ class AVLtree
             int lDepth = Height(node.left); 
             int rDepth = Height(node.right); 
             if (lDepth > rDepth) 
-                return (lDepth); 
+                return (lDepth+1); 
              else 
-                return (rDepth); 
+                return (rDepth+1); 
         } 
     }
 	public int max(Integer a,Integer b)

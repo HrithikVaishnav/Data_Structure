@@ -16,7 +16,6 @@ public class BSTdriver
          System.out.println("4. Postfix Traverse:");
          System.out.println("5. Prefix Traverse:");
          System.out.println("6.Exit:");
-         Scanner sc=new Scanner(System.in);
          a=sc.nextInt();
        
        
@@ -25,14 +24,14 @@ public class BSTdriver
             case 1: Integer i=sc.nextInt();
             	    obj.Insert(i);
                     break;
-            case 2: Integer i=sc.nextInt();
-                    obj.deleteNode(i);
+            case 2: Integer l=sc.nextInt();
+                    obj.deleteNode(l);
                     break;
             case 3: obj.Traverse();
                     break;
-            case 4: obj.prefix();
+            case 4: obj.Prefix();
                     break;
-            case 5: obj.postfix();
+            case 5: obj.Postfix();
                     break;
      	 }   
         }while(a!=6);

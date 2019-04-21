@@ -1,0 +1,63 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args)
+	{
+	        int d;
+	        Sorting ob=new Sorting();
+	        do
+            {
+                 int[] a;
+	        a=new int[1000];
+                Scanner sc=new Scanner(System.in);
+                System.out.println("Enter your data choice :");
+                System.out.println("1. For Forward Data ");
+                System.out.println("2. For Reverse Data ");
+                System.out.println("3. For Random Data  ");
+                int x=sc.nextInt();
+                switch(x)
+                {
+                    case 1: for(int i=0;i<1000;i++)
+	                        {
+	                            a[i]=i;
+	                        }
+	                        break;
+	                case 2: for(int i=999;i>=0;i--)
+	                        {
+	                            a[i]=i;
+	                        }
+	                        break;
+	                case 3: for(int i=999;i>0;i--)
+	                        {
+	                            a[i]=(int)(1000*Math.random());
+	                        }
+	                        break;
+                }
+                
+                System.out.println("Enter your choice :");
+                System.out.println(" 1. Insertion Sorting ");
+                System.out.println(" 2. Bubble Sorting ");
+                System.out.println(" 3. Selection Sorting ");
+                System.out.println(" 4. Merge Sorting ");
+                System.out.println(" 5. Quick Sorting ");
+                System.out.println(" 6. For Exit ");
+                d=sc.nextInt();
+                
+                switch(d)
+                {
+                    case 1: ob.InsertionSort(a);
+                    break;
+                    case 2: ob.BubbleSort(a);
+                    break;
+                    case 3: ob.SelectionSort(a);
+                    break;
+                    case 4: ob.MergeSort(a);
+                    break;
+                    case 5: ob.QuickSort(a);
+                    break;
+                }
+            }while(d!=6);
+	}        
+	
+
+}

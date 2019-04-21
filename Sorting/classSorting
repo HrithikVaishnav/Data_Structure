@@ -1,0 +1,182 @@
+import java.util.*;
+class Sorting
+{
+    // 1.Insertion Sorting :
+    public void InsertionSort(int[] a)
+	{
+	        long start=System.nanoTime();
+	        int arr[]=insertionSort(a);
+	        long end=System.nanoTime();
+	        System.out.println(Arrays.toString(arr));
+	        System.out.println("Counting time "+(end-start)*1.0/1000000+ " ms ");
+	}
+	public int[] insertionSort(int[] list)
+    {
+        int temp, i;
+        for(int j = 1; j < list.length; j++)
+        { 
+            temp = list[j];
+            i = j-1;
+            while( i > -1 && temp < list[i])
+            { // swap elements
+                list[i+1] = list[i];
+                i--;
+            }
+            list[i + 1] = temp;
+        }
+        return list;
+    }
+    // 2. Bubble Sorting :
+    public void BubbleSort(int[] a)
+    {
+            long start=System.nanoTime();
+	        int arr[]=bubbleSort(a);
+	        long end=System.nanoTime();
+	        System.out.println(Arrays.toString(arr));
+	        System.out.println("Counting time "+(end-start)*1.0/1000000+ " ms ");
+    }
+    public int[] bubbleSort(int[] list)
+    {
+        int temp,i;
+        for(int j=1;j<list.length;j++)
+        {
+            for(int k=list.length;k<j+1;k--)
+            {
+                if(list[k]<list[k-1])
+                {
+                    temp=list[k];
+                    list[k]=list[k-1];
+                    list[k-1]=temp;
+                }
+            }
+        }
+        return list;
+    }
+    //  3.Selection Sorting:
+    public void SelectionSort(int[] a)
+    {
+            long start=System.nanoTime();
+	        int arr[]=selectionSort(a);
+	        long end=System.nanoTime();
+	        System.out.println(Arrays.toString(arr));
+	        System.out.println("Counting time "+(end-start)*1.0/1000000+ " ms ");
+    }
+    public int[] selectionSort(int[] list)
+    { 
+        int min;
+        int temp;
+        for(int j=1;j<=list.length -1;j++)
+        {
+            min = j;
+            for(int i=j+1;i<=list.length-1;i++)
+            {    
+                if(list[i]<list[min])
+                 min = i;
+            }    
+            temp = list[j];
+            list[j] = list[min];
+            list[min] = temp;
+        }  
+        return list;
+    }
+    // 4.Merge Sort:
+   public void MergeSort(int[] a)
+   {
+            long start=System.nanoTime();
+            int n=a.length-1;
+	        int arr[]=mergeSort(a,0,n);
+	        long end=System.nanoTime();
+	        System.out.println(Arrays.toString(arr));
+	        System.out.println("Counting time "+(end-start)*1.0/1000000+ " ms ");
+   }
+   public int[] mergeSort(int[] list,int low,int high)
+   {
+       if(low<high)
+       {
+           int center=(low+high)/2;
+           mergeSort(list,low,center);
+           mergeSort(list,center+1,high);
+           merge(list,low,center,high);
+       }
+       return list;
+      
+   }
+   public void merge(int[] list,int lp,int le, int re)
+   {
+       int[] temp;
+       temp=new int[1000];
+       int i=lp;    // lp=left most,le=mid,re=right end
+       int j=le+1;
+       int k=0;
+       while(i<=le && j<=re)
+       {
+           if(list[i]<list[j])
+           {
+                temp[k]=list[i];
+                i++;
+           }
+           else
+           {
+                temp[k]=list[j];
+                j++;
+           }
+           k++;
+        }
+        while(i<=le)
+        {
+            temp[k]=list[i];
+            i++;
+            k++;
+        }
+        while(j<=re)
+        {
+            temp[k]=list[j];
+            j++;
+            k++;
+        }
+        for(int p=lp;p<=re;p++)
+        {
+            list[p]=temp[p-lp];
+        }
+   }
+   // 5.Quick Sort:
+   public void QuickSort(int[] a)
+   {
+            long start=System.nanoTime();
+            int n=a.length-1;
+	        int arr[]=quickSort(a,0,n);
+	        long end=System.nanoTime();
+	        System.out.println(Arrays.toString(arr));
+	        System.out.println("Counting time "+(end-start)*1.0/1000000+ " ms ");
+    }
+    public int[] quickSort(int[] list,int low,int high)
+    {
+        if(low<high)
+        {
+            int pindex=partition(list,low,high);
+            quickSort(list,low,pindex-1);
+            quickSort(list,pindex+1,high);
+        }
+        return list;
+    }
+    public int partition(int[] list,int low,int high)
+    {
+        int pivot=list[high];
+        int pindex=low;
+        for(int i=low;i<high;i++)
+        {
+            if(list[i]<=pivot)
+            {
+                int temp=list[i];
+                list[i]=list[pindex];
+                list[pindex]=temp;
+                pindex++;
+            }
+        }
+        int temp=list[pindex];
+        list[high]=list[pindex];
+        list[pindex]=temp;
+        return pindex;
+    }
+   
+}

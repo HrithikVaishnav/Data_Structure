@@ -2,7 +2,6 @@ import java.util.*;
 class AVLtree
 {
 	Node root;
-	Integer height;
 	AVLtree()
 	{
 		root=null;

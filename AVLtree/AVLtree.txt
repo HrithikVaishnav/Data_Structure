@@ -8,7 +8,7 @@ class AVLtree
 	}
 	public void addNode(Integer v)
 	{
-	    addNode(root,v);
+	    root=addNode(root,v);
 	}
     public Node addNode(Node t,Integer item)
     {

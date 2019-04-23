@@ -31,7 +31,7 @@ class AVLtree
             t.right = addNode(t.right, item);
             if(Height(t.left)-Height(t.right) == -2)
             {
-                if(item<=t.right.val)
+                if(item>t.right.val)
                     t = singleRotateLeft(t);
                 else
                     t = doubleRotateRightLeft(t);
@@ -43,7 +43,7 @@ class AVLtree
     public Integer Height(Node node)  
     { 
         if (node == null) 
-            return 0; 
+            return -1; 
         else 
         { 
             int lDepth = Height(node.left); 

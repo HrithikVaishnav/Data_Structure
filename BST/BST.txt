@@ -118,8 +118,8 @@ class BST<D>
 		else
 		{
 		System.out.print(r.val);
-		Traverse(r.left);
-		Traverse(r.right);
+		Prefix(r.left);
+		Prefix(r.right);
 		}
 	}
 	public void Postfix(Node r)
@@ -128,8 +128,8 @@ class BST<D>
 		return;
 		else
 		{
-		Traverse(r.left);
-		Traverse(r.right);
+		Postfix(r.left);
+		Postfix(r.right);
 		System.out.print(r.val);
 		}
 	}
